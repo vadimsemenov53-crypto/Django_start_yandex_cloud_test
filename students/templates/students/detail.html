@@ -1,0 +1,21 @@
+{% block title %}Список студентов{% endblock %}
+
+{% block content %}
+{% include 'students/header.html' %}
+
+<h2>Детали студента</h2>
+
+<p>Имя: {{ student.first_name | upper }}</p>
+<p>Фамилия: {{ student.last_name | lower }}</p>
+<p>Курс: {{ student.get_year_display }}</p>
+<p>Дата рождения: {{ student.birth_data|date:'d M Y' }}</p>
+<p>Комментарий: {{student.commet | default:"Комментарий отсутствует"}}</p>
+<p>Описание: {{student.get_year_display | truncatechars:10}}</p>
+<p>Фотография:
+    <img class="img-thumbnail"
+         src="{{ student.photo.url }}"
+         alt="{{ student.first_name }} {{ student.last_name }}">
+</p>
+</div>
+
+{% endblock %}

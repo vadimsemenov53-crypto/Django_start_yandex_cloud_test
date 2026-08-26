@@ -1,0 +1,44 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Список студентов{% endblock %}
+
+{% block content %}
+{% include 'students/header.html' %}
+
+<h2>Список студентов</h2>
+
+<ul class="list-group">
+    {% for student in students %}
+    <li class="list-group-item d-flex justify-content-between align-items-center
+        {% if student.year == 'first' %}list-group-item-primary
+        {% elif student.year == 'second' %}list-group-item-success
+        {% elif student.year == 'third' %}list-group-item-warning
+        {% elif student.year == 'fourth' %}list-group-item-danger
+        {% endif %}">
+        {{ student.first_name }} {{ student.last_name }}
+        <span class="badge bg-black rounded-pill">
+                {% if student.year == 'first' %}
+                Первый курс
+                {% elif student.year == 'second' %}
+                Второй курс
+                {% elif student.year == 'third' %}
+                Третий курс
+                {% elif student.year == 'fourth' %}
+                Четвертый курс
+                {% endif %}
+        </span>
+    </li>
+    {% if perms.students.can_promote_student %}
+    <li>
+        <button>Перевести студента</button>
+    </li>
+    {% endif %}
+    {% if perms.students.can_expel_student %}
+    <li>
+        <button>Исключить студента</button>
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
+
+{% endblock %}
