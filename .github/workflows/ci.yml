@@ -1,6 +1,6 @@
 name: Django CI
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   test:
@@ -39,16 +39,21 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: '3.12'
-          cache: "poetry"
+          python-version: "3.12"
 
       - name: Install Poetry
-        run: pip install poetry==2.2.1
+        run: pipx install poetry==2.2.1
+
+      - name: Set up Poetry cache
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: "poetry"
 
       - name: Install dependencies
         run: poetry install --no-interaction --no-ansi --no-root
