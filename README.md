@@ -1,0 +1,1 @@
+Django start for test work for Yandex Cloud

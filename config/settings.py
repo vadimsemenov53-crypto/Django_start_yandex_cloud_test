@@ -16,9 +16,6 @@ from dotenv import load_dotenv
 
 load_dotenv(override=True)
 
-import django.db.models
-from django.conf.global_settings import STATICFILES_DIRS, MEDIA_URL, MEDIA_ROOT, DEFAULT_AUTO_FIELD, LOGIN_REDIRECT_URL, \
-    LOGOUT_REDIRECT_URL, STATIC_ROOT
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
