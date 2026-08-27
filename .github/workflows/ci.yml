@@ -6,6 +6,37 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      SECRET_KEY: django-secret
+
+      DEBUG: "True"
+
+      NAME: django_project
+      USER: postgres
+      PASSWORD: 2717
+      HOST: localhost
+      PORT: 5432
+
+      EMAIL_HOST_USER: example1111@yandex.ru
+      EMAIL_HOST_PASSWORD: pppzzzpzpz
+
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: django_project
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 2717
+
+        ports:
+          - 5432:5432
+
+        options: >-
+          --health-cmd="pg_isready -U postgres -d django_start"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
     steps:
       - name: Check out code
         uses: actions/checkout@v3
