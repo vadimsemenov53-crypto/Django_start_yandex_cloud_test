@@ -13,7 +13,7 @@ jobs:
 
       NAME: django_project
       USER: postgres
-      PASSWORD: 2717
+      PASSWORD: 7777
       HOST: localhost
       PORT: 5432
 
@@ -26,7 +26,7 @@ jobs:
         env:
           POSTGRES_DB: django_project
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: 2717
+          POSTGRES_PASSWORD: 7777
 
         ports:
           - 5432:5432
@@ -42,9 +42,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: "poetry"
 
       - name: Install Poetry
         run: pip install poetry==2.2.1
